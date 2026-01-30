@@ -8,12 +8,12 @@ import (
 func GetProductsHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	products := []map[string]interface{}{
+	products := []Product{
 		{
-			"id":          1,
-			"name":        "Teclado gamer",
-			"description": "Teclado gamer com iluminação RGB e teclas programáveis",
-			"price":       800.00,
+			ID:          1,
+			Name:        "Teclado gamer",
+			Description: "Teclado gamer com iluminação RGB",
+			Price:       800.00,
 		},
 	}
 
