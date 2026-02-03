@@ -12,7 +12,8 @@ So far, the project includes:
 - Explicit route registration and request handling
 - Clear separation of concerns by isolating HTTP handlers by domain
 - A defined domain model using Go structs
-- A service layer responsible for domain logic
+- A service layer responsible for orchestrating domain logic
+- A repository layer responsible for data access
 - JSON responses encoded directly from typed domain models
 - A simple and intentional structure prepared for incremental evolution
 
@@ -25,7 +26,7 @@ This repository is **not intended to be production-ready**. It serves as a **con
 | Method | Route        | Description |
 |------|-------------|-------------|
 | GET  | `/health`   | Health check endpoint used to verify that the HTTP server is running and responding correctly. Returns status `200 OK` with a simple response body. |
-| GET  | `/products` | Returns a list of products in JSON format. The handler delegates domain logic to the service layer, which currently returns mocked data from an in-memory slice of typed `Product` structs. |
+| GET  | `/products` | Returns a list of products in JSON format. The handler delegates responsibility to the service layer, which retrieves data from the repository. At this stage, the repository returns mocked in-memory data. |
 
 These routes establish the base HTTP flow of the application and serve as the foundation for the upcoming CRUD implementation.
 
@@ -38,8 +39,8 @@ These routes establish the base HTTP flow of the application and serve as the fo
 - `product/`
   - `model.go` — domain definition for `Product`
   - `handler.go` — HTTP handlers related to products
-  - `service.go` — service layer containing domain logic
-  - `repository.go` — placeholder for persistence logic
+  - `service.go` — service layer responsible for domain orchestration
+  - `repository.go` — repository layer responsible for data access (currently mocked)
 
 ---
 
