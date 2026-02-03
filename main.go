@@ -10,7 +10,7 @@ import (
 func main() {
 	http.HandleFunc("/health", handlers.HealthHandler)
 
-	http.HandleFunc("/products", product.GetProductsHandler)
+	http.HandleFunc("/products", product.ProductsHandler)
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
