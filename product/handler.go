@@ -8,14 +8,7 @@ import (
 func GetProductsHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	products := []Product{
-		{
-			ID:          1,
-			Name:        "Teclado gamer",
-			Description: "Teclado gamer com iluminação RGB",
-			Price:       800.00,
-		},
-	}
+	products := GetProducts()
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(products)
