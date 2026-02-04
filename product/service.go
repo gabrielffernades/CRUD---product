@@ -11,7 +11,11 @@ func CreateProduct(input CreateProductInput) Product {
 		Price:       input.Price,
 	}
 
-	SaveProduct(product)
+	product = SaveProduct(product)
 
 	return product
+}
+
+func GetProductByID(id int) (Product, bool) {
+	return FindProductByID(id)
 }

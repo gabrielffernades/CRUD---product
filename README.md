@@ -9,12 +9,12 @@ Instead of focusing on business complexity, the goal is to clearly understand ho
 So far, the project includes:
 
 - An HTTP server built using Go’s standard `net/http` package
-- Explicit route registration with method-based handling (GET / POST)
+- Explicit route registration with method-based handling
 - Clear separation of concerns following a domain-oriented structure
 - Domain models defined using Go structs
-- A service layer responsible for orchestrating business logic
+- A service layer responsible for orchestrating domain logic
 - A repository layer simulating persistence using in-memory storage
-- Automatic ID generation at the persistence layer
+- Automatic ID generation handled at the persistence layer
 - JSON request/response handling using typed structs
 - A simple and intentional structure prepared for incremental evolution
 
@@ -24,13 +24,14 @@ This repository is **not intended to be production-ready**. It serves as a **con
 
 ## Available Routes
 
-| Method | Route        | Description |
-|------|-------------|-------------|
-| GET  | `/health`   | Health check endpoint used to verify that the HTTP server is running and responding correctly. Returns status `200 OK`. |
-| GET  | `/products` | Returns a list of products in JSON format. Data is retrieved from an in-memory repository. |
-| POST | `/products` | Creates a new product. The request body is validated and converted into a domain entity, persisted in memory, and returned with a generated ID. |
+| Method | Route             | Description |
+|------|------------------|-------------|
+| GET  | `/health`        | Health check endpoint used to verify that the HTTP server is running and responding correctly. Returns status `200 OK`. |
+| GET  | `/products`      | Returns a list of products in JSON format. Data is retrieved from an in-memory repository. |
+| POST | `/products`      | Creates a new product. The request body is validated, converted into a domain entity, persisted in memory, and returned with a generated ID. |
+| GET  | `/products/{id}` | Returns a single product by its ID. If the product does not exist, the API responds with `404 Not Found`. |
 
-These routes establish a complete read/write HTTP flow and serve as the foundation for expanding the CRUD operations.
+These routes establish a complete read/write HTTP flow and serve as the foundation for expanding the remaining CRUD operations.
 
 ---
 
@@ -51,7 +52,6 @@ CRUD---product/
 ├── main.go               # Application entry point and HTTP server setup
 ├── go.mod
 └── README.md
-
 
 
 ## Running the project

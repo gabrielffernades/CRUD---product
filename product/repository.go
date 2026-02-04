@@ -1,6 +1,6 @@
 package product
 
-var products []Product
+var products = []Product{}
 
 var nextID = 1
 
@@ -15,4 +15,13 @@ func SaveProduct(product Product) Product {
 
 func FindAllProducts() []Product {
 	return products
+}
+
+func FindProductByID(id int) (Product, bool) {
+	for _, product := range products {
+		if product.ID == id {
+			return product, true
+		}
+	}
+	return Product{}, false
 }

@@ -12,6 +12,8 @@ func main() {
 
 	http.HandleFunc("/products", product.ProductsHandler)
 
+	http.HandleFunc("/products/", product.GetProductByIDHandler)
+
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
 	}
