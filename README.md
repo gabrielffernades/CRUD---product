@@ -16,6 +16,7 @@ So far, the project includes:
 - A repository layer simulating persistence using in-memory storage
 - Automatic ID generation handled at the persistence layer
 - JSON request/response handling using typed structs
+- A complete in-memory CRUD flow (Create, Read, Delete)
 - A simple and intentional structure prepared for incremental evolution
 
 This repository is **not intended to be production-ready**. It serves as a **controlled environment for experimentation and learning**, prioritizing clarity, correctness, and idiomatic Go over unnecessary abstractions.
@@ -30,8 +31,9 @@ This repository is **not intended to be production-ready**. It serves as a **con
 | GET  | `/products`      | Returns a list of products in JSON format. Data is retrieved from an in-memory repository. |
 | POST | `/products`      | Creates a new product. The request body is validated, converted into a domain entity, persisted in memory, and returned with a generated ID. |
 | GET  | `/products/{id}` | Returns a single product by its ID. If the product does not exist, the API responds with `404 Not Found`. |
+| DELETE | `/products/{id}` | Deletes a product by its ID. Returns `204 No Content` when the deletion is successful, or `404 Not Found` if the product does not exist. |
 
-These routes establish a complete read/write HTTP flow and serve as the foundation for expanding the remaining CRUD operations.
+These routes establish a complete read/write/delete HTTP flow and serve as the foundation for expanding the remaining CRUD operations.
 
 ---
 
@@ -44,7 +46,7 @@ CRUD---product/
 ├── handlers/
 │   └── health.go         # Health check HTTP handler
 ├── product/
-│   ├── routes.go         # HTTP method routing (GET / POST)
+│   ├── routes.go         # HTTP method routing (/products and /products/{id})
 │   ├── handler.go        # HTTP handlers (request/response translation)
 │   ├── service.go        # Domain logic and orchestration
 │   ├── repository.go    # Data persistence (in-memory)

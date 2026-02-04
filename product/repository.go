@@ -25,3 +25,13 @@ func FindProductByID(id int) (Product, bool) {
 	}
 	return Product{}, false
 }
+
+func DeleteProductByID(id int) bool {
+	for i, product := range products {
+		if product.ID == id {
+			products = append(products[:i], products[i+1:]...)
+			return true
+		}
+	}
+	return false
+}
