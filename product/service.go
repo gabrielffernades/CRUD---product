@@ -20,6 +20,10 @@ func CreateProduct(input CreateProductInput) Product {
 	return product
 }
 
+func UpdateProduct(id int, input UpdateProductInput) (Product, bool) {
+	return UpdateProductByID(id, input)
+}
+
 func DeleteProduct(id int) bool {
 	return DeleteProductByID(id)
 }

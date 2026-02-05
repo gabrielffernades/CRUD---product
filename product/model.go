@@ -12,3 +12,9 @@ type CreateProductInput struct {
 	Description string  `json:"description"`
 	Price       float64 `json:"price"`
 }
+
+type UpdateProductInput struct {
+	Name        string  `json:"name"`
+	Description string  `json:"description"`
+	Price       float64 `json:"price"`
+}

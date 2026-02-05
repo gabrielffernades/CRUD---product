@@ -22,6 +22,8 @@ func ProductsByIDHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		GetProductByIDHandler(w, r)
+	case http.MethodPut:
+		UpdateProductByIDHandler(w, r)
 	case http.MethodDelete:
 		DeleteProductByIDHandler(w, r)
 	default:

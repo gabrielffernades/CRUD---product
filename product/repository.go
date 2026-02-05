@@ -26,6 +26,20 @@ func FindProductByID(id int) (Product, bool) {
 	return Product{}, false
 }
 
+func UpdateProductByID(id int, input UpdateProductInput) (Product, bool) {
+	for i, product := range products {
+		if product.ID == id {
+			product.Name = input.Name
+			product.Description = input.Description
+			product.Price = input.Price
+
+			products[i] = product
+			return product, true
+		}
+	}
+	return Product{}, false
+}
+
 func DeleteProductByID(id int) bool {
 	for i, product := range products {
 		if product.ID == id {
